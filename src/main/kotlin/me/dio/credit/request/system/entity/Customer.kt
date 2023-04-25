@@ -18,7 +18,7 @@ data class Customer(
     @Column(nullable = false)
     val password: String = "",
     @Column(nullable = false)
-    val income: BigDecimal = BigDecimal.ZERO,
+    var income: BigDecimal = BigDecimal.ZERO,
     @Column(nullable = false)
     @Embedded
     var address: Address = Address(),
