@@ -39,9 +39,9 @@ class RestExceptionHandler {
     @ExceptionHandler(DataAccessException::class)
     fun handlerValidException(ex: DataAccessException): ResponseEntity<ExceptionDetails>{
         val exDetails = ExceptionDetails(
-            title = "Bad Request! Consult the documentation!",
+            title = "Conflict! Consult the documentation!",
             timestamp = LocalDateTime.now(),
-            status = HttpStatus.BAD_REQUEST.value(),
+            status = HttpStatus.CONFLICT.value(),
             exception = ex.javaClass.toString(),
             details = mutableMapOf(ex.cause.toString() to ex.message)
         )
@@ -59,7 +59,7 @@ class RestExceptionHandler {
             details = mutableMapOf(ex.cause.toString() to ex.message)
         )
 
-        return ResponseEntity.status(HttpStatus.CONFLICT).body(exDetails)
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(exDetails)
     }
 
     @ExceptionHandler(IllegalArgumentException::class)
